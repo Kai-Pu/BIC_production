@@ -1,0 +1,30 @@
+preprocess:
+        kit: Illumina
+        gzip: false
+        stop-oligo: false
+        min-length: 20
+
+alignment:
+        type: multiple
+        cores: 1
+        bacteria_CDS: 0
+        bacteria_DNA: 0
+        nt_bacteria_1: 0
+        nt_bacteria_2: 0
+        nt_bacteria_rtRNA: 0
+        microbiome_CDS_blood: 0
+        microbiome_CDS_heart: 0
+        microbiome_CDS_lymph: 0
+        microbiome_CDS_gastrointestinal: 0
+        microbiome_CDS_urogenital: 0
+        microbiome_CDS_oral: 0
+        microbiome_CDS_airways: 0
+        microbiome_CDS_skin: 0
+        microbiome_DNA_blood: 0
+        microbiome_DNA_heart: 0
+        microbiome_DNA_lymph: 0
+        microbiome_DNA_gastrointestinal: 0
+        microbiome_DNA_urogential: 0
+        microbiome_DNA_oral: 0
+        microbiome_DNA_airways: 0
+        microbiome_DNA_skin: 0

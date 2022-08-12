@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="page-header" id="page-hader">
+        <h3>Bacterial co-abundance network</h3>
+        <p>This module enables users to retrieve the bacterial co-abundance network in a given tumor type. The co-abundance is measured by SparCC (Sparse Correlations for Compositional data).</p>
+        {% include 'analyses/coabundance_network/query.html' %}
+    </div>
+    
+    <div class="page-result" id="page-result">
+        {% include 'analyses/coabundance_network/content.html' %}
+    </div>
+    
+    
+{% endblock %}

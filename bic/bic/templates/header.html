@@ -1,0 +1,75 @@
+{% load static %}
+
+{% url 'index' as index_url %}
+{% url 'statistics' as statistics_url %}
+{% url 'documents' as documents_url %}
+{% url 'downloads' as downloads_url %}
+{% url 'contact' as contact_url %}
+
+{# analyses urls #}
+{% url 'analyses_bacteria_abundance' as analyses_bacteria_abundance_url %}
+{% url 'analyses_bacteria_diversity' as analyses_bacteria_diversity_url %}
+{% url 'analyses_bacteria_composition' as analyses_bacteria_composition_url %}
+{% url 'analyses_bacteria_clinical_relevance' as analyses_bacteria_clinical_relevance_url %}
+{% url 'analyses_bacteria_coabundance_network' as analyses_bacteria_coabundance_network_url %}
+{% url 'analyses_bacteria_human_rna_network' as analyses_bacteria_human_rna_network_url %}
+{% url 'analyses_bacteria_associated_gene_ontology' as analyses_bacteria_associated_gene_ontology_url %}
+
+
+<div class="container-fluid">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+        
+        <span><a class="navbar-brand" href={{index_url}}>Bacteria in cancer (BIC)</a></span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarCollapse" >
+            <ul class="navbar-nav ml-auto">
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownAnalyses" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static 'icons/analyses.png' %}" alt="" width="30" height="30" class="d-inline-block">Analyses</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownAnalyses">
+                        <span class="dropdown-item-text">Select to start</span>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href={{ analyses_bacteria_abundance_url }}>&nbsp;Bacterial abundance</a>
+                        <a class="dropdown-item" href={{ analyses_bacteria_diversity_url }}>&nbsp;Bacterial diversity</a>
+                        <a class="dropdown-item" href={{ analyses_bacteria_composition_url }}>&nbsp;Bacterial composition</a>
+                        <a class="dropdown-item" href={{ analyses_bacteria_clinical_relevance_url }}>&nbsp;Clinical relevance</a>
+                        <a class="dropdown-item" href={{ analyses_bacteria_coabundance_network_url }}>&nbsp;Bacterial co-abundance network</a>
+                        <a class="dropdown-item" href={{ analyses_bacteria_human_rna_network_url }}>&nbsp;Bacteria-human gene network</a>
+                        <a class="dropdown-item" href={{ analyses_bacteria_associated_gene_ontology_url }}>&nbsp;Bacteria-associated gene ontology</a>
+                    </div>
+                </li>                
+                
+                <li class="nav-item">
+                    <div  id="statistics_webpage">
+                        <span>{% if request.path == statistics_url %}<a class="nav-link disabled" href={{statistics_url}}><img src="{% static 'icons/statistics.png' %}" alt="" width="30" height="30" class="d-inline-block">&nbsp;Statistics</a>{% else %}<a class="nav-link" href={{statistics_url}}><img src="{% static 'icons/statistics.png' %}" alt="" width="30" height="30" class="d-inline-block">&nbsp;Statistics</a>{% endif %}</span>
+                    </div>
+                </li>
+
+                
+                <li class="nav-item">
+                    <span>{% if request.path == documents_url %}<a class="nav-link disabled" href={{documents_url}}><img src="{% static 'icons/documents.png' %}" alt="" width="30" height="30" class="d-inline-block">&nbsp;Documents</a>{% else %}<a class="nav-link" href={{documents_url}}><img src="{% static 'icons/documents.png' %}" alt="" width="30" height="30" class="d-inline-block">&nbsp;Documents</a>{% endif %}</span>
+                </li>
+
+                
+                <li class="nav-item">
+                    <span>{% if request.path == downloads_url %}<a class="nav-link disabled" href={{downloads_url}}><img src="{% static 'icons/downloads.png' %}" alt="" width="30" height="30" class="d-inline-block">&nbsp;Downloads</a>{% else %}<a class="nav-link" href={{downloads_url}}><img src="{% static 'icons/downloads.png' %}" alt="" width="30" height="30" class="d-inline-block">&nbsp;Downloads</a>{% endif %}</span>
+                </li>
+
+                
+                <!-- <li class="nav-item"> -->
+                    <!-- <span>{% if request.path == contact_url %}<a class="nav-link disabled" href={{contact_url}}><img src="{% static 'icons/contact.png' %}" alt="" width="30" height="30" class="d-inline-block">&nbsp;Contact</a>{% else %}<a class="nav-link" href={{contact_url}}><img src="{% static 'icons/contact.png' %}" alt="" width="30" height="30" class="d-inline-block">&nbsp;Contact</a>{% endif %}</span> -->
+                <!-- </li> -->
+
+                <li class="nav-item">
+                    <span><a class="nav-link" href="mailto:yukijuan@ntu.edu.tw"><img src="{% static 'icons/contact.png' %}" alt="" width="30" height="30" class="d-inline-block">&nbsp;Contact</a></span>
+                </li>
+
+            </ul>
+        </div>        
+    </nav>
+</div>
+
+

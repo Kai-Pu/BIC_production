@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+<h2>
+    Download parsed data
+</h2>
+
+<div class="div_downloads">
+    <h4>Bacteria relative abundance</h4>
+    <h6><a href="/static/downloads/TCGA_32_projects_merge_relative_abundance_nonFFPE_selected_PT_STN_GMPR_norm_Genus.txt" download="BIC genus expression matrix.txt">Genus expression matrix</a></h6>
+    <h6><a href="/static/downloads/TCGA_32_projects_merge_relative_abundance_nonFFPE_selected_PT_STN_GMPR_norm_Family.txt" download="BIC family expression matrix.txt">Family expression matrix</a></h6>
+    <h6><a href="/static/downloads/TCGA_32_projects_merge_relative_abundance_nonFFPE_selected_PT_STN_GMPR_norm_Order.txt" download="BIC order expression matrix.txt">Order expression matrix</a></h6>
+    <h6><a href="/static/downloads/TCGA_32_projects_merge_relative_abundance_nonFFPE_selected_PT_STN_GMPR_norm_Class.txt" download="BIC class expression matrix.txt">Class expression matrix</a></h6>
+    <h6><a href="/static/downloads/TCGA_32_projects_merge_relative_abundance_nonFFPE_selected_PT_STN_GMPR_norm_Phylum.txt" download="BIC phylum expression matrix.txt">Phylum expression matrix</a></h6>
+    <br>
+    <h4>Metadata</h4>
+    <h6><a href="/static/downloads/TCGA_miRNAseq_and_mRNAseq_selected_samples_nonFFPE_Primary_Tumor_and_Solid_Tissue_Normal_v2.txt" download="BIC metadata matrix.txt">Metadata matrix</a></h6>
+
+</div>
+
+{% endblock %}

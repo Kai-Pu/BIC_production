@@ -1,0 +1,119 @@
+{% load static %}
+
+<div class="ui-widget">
+    <div class="form-horizontal" role="form">
+        {% csrf_token %}
+        
+        <div class="callout callout-warning">
+            <div class="form-group row">
+                <label for="select a cancer type" class="col-sm-3 control-label">
+                    Select a cancer type:
+                    </label>
+                    <div class="col-sm-7">
+                        <select id="cancer_type_go_input" class="form-control">
+                            <option value="ACC">Adrenocortical carcinoma (ACC)</option>
+                            <option value="BLCA">Bladder Urothelial Carcinoma (BLCA)</option>
+                            <option value="BRCA">Breast invasive carcinoma (BRCA)</option>
+                            <option value="CESC">Cervical squamous cell carcinoma and endocervical adenocarcinoma (CESC)</option>
+                            <option value="CHOL">Cholangiocarcinoma (CHOL)</option>
+                            <option value="COAD">Colon adenocarcinoma (COAD)</option>
+                            <option value="DLBC">Lymphoid Neoplasm Diffuse Large B-cell Lymphoma (DLBC)</option>
+                            <option value="ESCA">Esophageal carcinoma (ESCA)</option>
+                            <option value="HNSC">Head and Neck squamous cell carcinoma (HNSC)</option>
+                            <option value="KICH">Kidney Chromophobe (KICH)</option>
+                            <option value="KIRC">Kidney renal clear cell carcinoma (KIRC)</option>
+                            <option value="KIRP">Kidney renal papillary cell carcinoma (KIRP)</option>
+                            <option value="LIHC">Liver hepatocellular carcinoma (LIHC)</option>
+                            <option value="LUAD">Lung adenocarcinoma (LUAD)</option>
+                            <option value="LUSC">Lung squamous cell carcinoma (LUSC)</option>
+                            <option value="MESO">Mesothelioma (MESO)</option>
+                            <option value="OV">Ovarian serous cystadenocarcinoma (OV)</option>
+                            <option value="PAAD">Pancreatic adenocarcinoma (PAAD)</option>
+                            <option value="PCPG">Pheochromocytoma and Paraganglioma (PCPG)</option>
+                            <option value="PRAD">Prostate adenocarcinoma (PRAD)</option>
+                            <option value="READ">Rectum adenocarcinoma (READ)</option>
+                            <option value="SARC">Sarcoma (SARC)</option>
+                            <option value="SKCM">Skin Cutaneous Melanoma (SKCM)</option>
+                            <option value="STAD">Stomach adenocarcinoma (STAD)</option>
+                            <option value="TGCT">Testicular Germ Cell Tumors (TGCT)</option>
+                            <option value="THCA">Thyroid carcinoma (THCA)</option>
+                            <option value="THYM">Thymoma (THYM)</option>
+                            <option value="UCEC">Uterine Corpus Endometrial Carcinoma (UCEC)</option>
+                            <option value="UCS">Uterine Carcinosarcoma (UCS)</option>
+                            <option value="UVM">Uveal Melanoma (UVM)</option>
+                        </select> 
+                    </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="select a taxononmy level" class="col-sm-3 control-label">
+                Select a taxonomy level:
+                </label>
+                <div class="col-sm-7">
+                    <select id="taxonomy_level_go_input" class="form-control">
+                        <option value="Genus">Genus</option>
+                        <option value="Family">Family</option>
+                        <option value="Order">Order</option>
+                        <option value="Class">Class</option>
+                        <option value="Phylum">Phylum</option>
+                    </select> 
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="bacteria" class="col-sm-3 control-label">
+                    Bacteria:
+                </label>
+                <div class="col-sm-7">
+                    <input id="bacteria_go_input" class="form-control" placeholder="Acinetobacter" autocomplete="off">
+                </div>
+                <div>
+                    <p id="analyses_bacteria_associated_gene_ontology_bacteria_input_error"></p>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="p_value_cutoff" class="col-sm-3 control-label">
+                    Adjusted p-value (cutoff):
+                </label>
+                <div class="col-sm-7">
+                    <input id="adjust_p_value_input" class="form-control" placeholder="0.05" autocomplete="off" value="0.05">
+                </div>
+                <div>
+                    <p id="analyses_bacteria_associated_gene_ontology_adjust_p_value_input_error"></p>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="gene_ontology_show_number" class="col-sm-3 control-label">
+                    Number of terms sorted by descending order of NES and shown in the bar chart: 
+                </label>
+                <div class="col-sm-7">
+                    <input id="number_term_input" class="form-control" placeholder="50" autocomplete="off" value="50">
+                </div>
+                <div>
+                    <p id="analyses_bacteria_associated_gene_ontology_number_term_input_error"></p>
+                </div>
+            </div>
+        
+
+            <div class="col-sm-10 text-right">
+                <button id="analyses_bacteria_associated_gene_ontology_query" type="submit-button" class="btn btn-primary btn-lg">
+                    Query
+                </button>&nbsp;
+                <button type="reset" class="btn btn-success btn-lg" value="reset" id="reset">
+                    Reset
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="progress" id="progress_bar" style="height:20px">
+    <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" style="width:100%">Processing</div>
+</div>

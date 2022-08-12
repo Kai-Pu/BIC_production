@@ -1,0 +1,230 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{# analyses urls #}
+{% url 'analyses_bacteria_abundance' as analyses_bacteria_abundance_url %}
+{% url 'analyses_bacteria_diversity' as analyses_bacteria_diversity_url %}
+{% url 'analyses_bacteria_composition' as analyses_bacteria_composition_url %}
+{% url 'analyses_bacteria_clinical_relevance' as analyses_bacteria_clinical_relevance_url %}
+{% url 'analyses_bacteria_coabundance_network' as analyses_bacteria_coabundance_network_url %}
+{% url 'analyses_bacteria_human_rna_network' as analyses_bacteria_human_rna_network_url %}
+{% url 'analyses_bacteria_associated_gene_ontology' as analyses_bacteria_associated_gene_ontology_url %}
+
+{% block title %}
+    {{title}}
+{% endblock %}
+
+{% block content %}
+
+<h2 id="h2_index">
+    Welcome to BIC DB
+</h2>
+
+
+<div class="callout" id="div_home_workflow">
+    <h3>
+        BIC: a database for the transcriptional landscape of bacteria in cancer
+    </h3>
+    <p>
+        Microbial communities are massively resident in the human body, yet dysbiosis has been reported to correlate with many diseases, including various cancers. Most studies focus on the gut microbiome, while the bacteria that participate in tumor microenvironments on site remain unclear. Previous studies have acquired the bacteria expression profiles from RNA-seq, whole genome sequencing, and whole exon sequencing in The Cancer Genome Atlas (TCGA). However, small-RNA sequencing data were rarely used. Using TCGA miRNA sequencing data, we evaluated bacterial abundance in 32 types of cancer. To uncover the bacteria involved in cancer, we applied an analytical process to align unmapped human reads to bacterial references and developed the BIC database for the transcriptional landscape of bacteria in cancer. BIC provides cancer-associated bacterial information, including the relative abundance of bacteria, bacterial diversity, associations with clinical relevance, the co-expression network of bacteria and human genes, and their associated gene ontology. These results can complement previously published databases. Users can easily download the result plots and tables, or download the bacterial abundance matrix for further analyses. In summary, BIC can provide information on cancer microenvironments related to microbial communities. BIC is available at: http://bic.jhlab.tw/.
+    </p>
+
+    <div id="div_index_figures">
+        <div>
+            <img class="img_home_workflow" src="{% static 'figures/home_workflow.png' %}" alt="Currently unavailable">
+        </div>
+        
+        <div>
+            <br>
+            <img class="img_home_workflow" src="{% static 'figures/documents_bic_architecture.png' %}" alt="Currently unavailable">
+        </div>
+        
+        <div>
+            <br>
+            <br>
+            <br>
+            <div class="div_index_figures_message">
+                <div class="div_message_title">
+                    Bacterial abundance
+                </div>
+                <div class="div_message_keyword">
+                    <ul class="message_keyword">
+                        <li class="message_keyword_text">Across cancers</li>
+                        <li class="message_keyword_delimiter">|</li>
+                        <li class="message_keyword_text">Relative abundance</li>
+                    </ul>
+                </div>
+                <div class="message_description">
+                    <br>
+                    To explore the relative abundance of a given bacteria ...
+                </div>
+            </div>
+            <div class="div_index_figures_gif">
+                <img class="img_home_analyses" src="{% static 'figures/home_analysis_bacterial_abundance.gif' %}" alt="Currently unavailable">
+            </div>
+        </div>
+        
+        <div>
+            <br>
+            <br>
+            <br>
+            <div class="div_index_figures_message">
+                <div class="div_message_title">
+                    Bacterial diversity
+                </div>
+                <div class="div_message_keyword">
+                    <ul class="message_keyword">
+                        <li class="message_keyword_text">Across cancers</li>
+                        <li class="message_keyword_delimiter">|</li>
+                        <li class="message_keyword_text">Diversity indexes</li>
+                    </ul>
+                </div>
+                <div class="message_description">
+                    <br>
+                    To retrieve bacterial diversity of each sample and investigate the distribution ...
+                </div>
+            </div>
+            <div class="div_index_figures_gif">
+                <img class="img_home_analyses" src="{% static 'figures/home_analysis_bacterial_diversity.gif' %}" alt="Currently unavailable">
+            </div>
+        </div>
+
+        <div>
+            <br>
+            <br>
+            <br>
+            <div class="div_index_figures_message">
+                <div class="div_message_title">
+                    Bacterial composition
+                </div>
+                <div class="div_message_keyword">
+                    <ul class="message_keyword">
+                        <li class="message_keyword_text">Individual cancer</li>
+                        <li class="message_keyword_delimiter">|</li>
+                        <li class="message_keyword_text">Composition</li>
+                    </ul>
+                </div>
+                <div class="message_description">
+                    <br>
+                    To retrieve the bacterial compositions of each sample ...
+                </div>
+            </div>
+            <div class="div_index_figures_gif">
+                <img class="img_home_analyses" src="{% static 'figures/home_analysis_bacterial_composition.gif' %}" alt="Currently unavailable">
+            </div>
+        </div>
+
+        <div>
+            <br>
+            <br>
+            <div class="div_index_figures_message">
+                <div class="div_message_title">
+                    Clinical relevance
+                </div>
+                <div class="div_message_keyword">
+                    <ul class="message_keyword">
+                        <li class="message_keyword_text">Individual cancer</li>
+                        <li class="message_keyword_delimiter">|</li>
+                        <li class="message_keyword_text">Clinical relevance</li>
+                    </ul>
+                </div>
+                <div class="message_description">
+                    <br>
+                    To investigate the associations between bacterial abundance and clinical characteristics...
+                </div>
+            </div>
+            <div class="div_index_figures_gif">
+                <img class="img_home_analyses" src="{% static 'figures/home_analysis_bacterial_clinical_relevance.gif' %}" alt="Currently unavailable">
+            </div>
+        </div>
+
+        <div>
+            <br>
+            <br>
+            <br>
+            <div class="div_index_figures_message">
+                <div class="div_message_title">
+                    Bacterial co-abundance network
+                </div>
+                <div class="div_message_keyword">
+                    <br>
+                    <br>
+                    <ul class="message_keyword">
+                        <li class="message_keyword_text">Individual cancer</li>
+                        <li class="message_keyword_delimiter">|</li>
+                        <li class="message_keyword_text">Co-abundance network</li>
+                    </ul>
+                </div>
+                <div class="message_description">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    To retrieve the bacterial co-abundance networks in a given tumor type ...
+                </div>
+            </div>
+            <div class="div_index_figures_gif">
+                <img class="img_home_analyses" src="{% static 'figures/home_analysis_bacterial_coabundance_network.gif' %}" alt="Currently unavailable">
+            </div>
+        </div>
+
+        <div>
+            <br>
+            <br>
+            <div class="div_index_figures_message">
+                <div class="div_message_title">
+                    Bacteria-human gene network
+                </div>
+                <div class="div_message_keyword">
+                    <br>
+                    <br>
+                    <ul class="message_keyword">
+                        <li class="message_keyword_text">Individual cancer</li>
+                        <li class="message_keyword_delimiter">|</li>
+                        <li class="message_keyword_text">Network</li>
+                    </ul>
+                </div>
+                <div class="message_description">
+                    <br>
+                    <br>
+                    <br>
+                    To obtain mRNAs which expression values are significantly correlated with the abundance of a query bacteria ...
+                </div>
+            </div>
+            <div class="div_index_figures_gif">
+                <img class="img_home_analyses" src="{% static 'figures/home_analysis_bacterial_human_rna_network.gif' %}" alt="Currently unavailable">
+            </div>
+        </div>
+
+        <div>
+            <br>
+            <br>
+            <br>
+            <div class="div_index_figures_message">
+                <div class="div_message_title">
+                    Bacteria-associated gene ontology
+                </div>
+                <div class="div_message_keyword">
+                    <br>
+                    <br>
+                    <ul class="message_keyword">
+                        <li class="message_keyword_text">Individual cancer</li>
+                        <li class="message_keyword_delimiter">|</li>
+                        <li class="message_keyword_text">Gene ontology</li>
+                    </ul>
+                </div>
+                <div class="message_description">
+                    <br>
+                    <br>
+                    <br>
+                    To explore the biological processes which a given bacteria might be involved in ...
+                </div>
+            </div>
+            <div class="div_index_figures_gif">
+                <img class="img_home_analyses" src="{% static 'figures/home_analysis_bacterial_associated_gene_ontology.gif' %}" alt="Currently unavailable">
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

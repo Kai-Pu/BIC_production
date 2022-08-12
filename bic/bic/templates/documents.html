@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+
+<h2>BIC documents</h2>
+
+<div id="div_document_menu">
+    Table of contents:
+    <li><a href="#a_documents_analysis_bacterial_abundance" id="menu_documents_analysis_bacterial_abundance">&#167; Bacterial abundance</li></a>
+    <li><a href="#a_documents_analysis_bacterial_diversity" id="menu_documents_analysis_bacterial_diversity">&#167; Bacterial diversity</li></a>
+    <li><a href="#a_documents_analysis_bacterial_composition" id="menu_documents_analysis_bacterial_composition">&#167; Bacterial composition</li></a>
+    <li><a href="#a_documents_analysis_bacterial_clinical_relevance" id="menu_documents_analysis_bacterial_clinical_relevance">&#167; Clinical relevance</li></a>
+    <li><a href="#a_documents_analysis_bacterial_coabundance_network" id="menu_documents_analysis_bacterial_coabundance_network">&#167; Bacterial co-abundance network</li></a>
+    <li><a href="#a_documents_analysis_bacterial_human_rna_network" id="menu_documents_analysis_bacterial_human_rna_network">&#167; Bacteria-human gene network</li></a>
+    <li><a href="#a_documents_analysis_bacterial_associated_gene_ontology" id="menu_documents_analysis_bacterial_associated_gene_ontology">&#167; Bacteria-associated gene ontology</li></a>
+</div>
+
+
+<div id="div_documents">
+
+    <h3>Tutorial for analyses</h3>
+    <h4>Across cancers</h4>
+
+    <a id="a_documents_analysis_bacterial_abundance"><h5>&#167; Bacterial abundance</h5></a>
+    <div id="div_documents_analysis_bacterial_abundance"> 
+        <h6 class="documents_analysis_query_part">For the query:</h6>
+        <img class="img_documents_analyses_query" src="{% static 'figures/documents_analyses_bacterial_abundance_query.png' %}" alt="Currently unavailable">
+        <p>
+            Step 1. Select the taxonomy level: Genus, Family, Order, Class, or Phylum.
+            <br>
+            Step 2. Enter the bacteria name of interest. Autocompleted name list will popup if the bacteria existed in BIC. Otherwise, "Not available" will show up on 2 after clicking the query button.
+            <br>
+            Step 3. Click "Query" to get the result part. 
+        </p>
+        <h6 class="documents_analysis_result_part">For the result:</h6>
+        <img class="img_documents_analyses_plot" src="{% static 'figures/documents_analyses_bacterial_abundance_plot.png' %}" alt="Currently unavailable">
+        <p>
+            The boxplot shows the relative abundance of the input bacteria and taxonomy. Slide, zoom in, save or reload the image by clicking on the corresponding button. The table shows the mean relative abundance of input bacteria and taxonomy. Save the table by clicking Copy, Excel, or CSV button.
+        </p>
+        <img class="img_documents_analyses_table" src="{% static 'figures/documents_analyses_bacterial_abundance_table.png' %}" alt="Currently unavailable">
+        <br>
+        <br>
+    </div>
+
+
+
+    <a id="a_documents_analysis_bacterial_diversity"><h5>&#167; Bacterial diversity</h5></a>
+    <div id="div_documents_analysis_bacterial_diversity"> 
+        <h6 class="documents_analysis_query_part">For the query:</h6>
+        <img class="img_documents_analyses_query" src="{% static 'figures/documents_analyses_bacterial_diversity_query.png' %}" alt="Currently unavailable">
+        <p>
+            Step 1. Select the taxonomy level.
+            <br>
+            Step 2. Select the diversity index or evenness.
+            <br>
+            Step 3. Click "Query" to get the result part. 
+        </p>
+        <h6 class="documents_analysis_result_part">For the result:</h6>
+        <img class="img_documents_analyses_plot" src="{% static 'figures/documents_analyses_bacterial_diversity_plot.png' %}" alt="Currently unavailable">
+        <p>
+            The boxplot shows the diversity index or evenness of input taxonomy. Slide, zoom in, save or reload the image by clicking the button. The table shows the mean diversity index of input taxonomy. Save the table by clicking Copy, Excel, or CSV button.
+        </p>
+        <img class="img_documents_analyses_table" src="{% static 'figures/documents_analyses_bacterial_diversity_table.png' %}" alt="Currently unavailable">
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+
+
+    <h4>Individual cancer type</h4>
+
+    <a id="a_documents_analysis_bacterial_composition"><h5>&#167; Bacterial composition</h5></a>
+<div id="div_documents_analysis_bacterial_composition"> 
+        <h6 class="documents_analysis_query_part">For the query:</h6>
+        <img class="img_documents_analyses_query" src="{% static 'figures/documents_analyses_bacterial_composition_query.png' %}" alt="Currently unavailable">
+        <p>
+            Step 1. Select the cancer type.
+            <br>
+            Step 2. Select the taxonomy level.
+            <br>
+            Step 3. Select the number of the top N abundant bacteria taxa, where N can be 5, 10, or 15.
+            <br>
+            Step 4. Click "Query" to get the result part.         </p>
+        <h6 class="documents_analysis_result_part">For the result:</h6>
+        <img class="img_documents_analyses_plot" src="{% static 'figures/documents_analyses_bacterial_composition_plot.png' %}" alt="Currently unavailable">
+        <p>
+            The stacked barplot shows the bacterial composition of input cancer type, taxonomy, and top N abundant taxa. The “Other” category of the plot is the summation of the remaining taxa. Save the image by clicking the save button or see the expression value of the taxa in the individual sample as the mouse hovers over the stacked barplot. The table shows the relative abundance of input cancer type and taxonomy of the particular sample. Save the table by clicking Copy, Excel, or CSV button.
+        </p>
+        <img class="img_documents_analyses_table" src="{% static 'figures/documents_analyses_bacterial_composition_table.png' %}" alt="Currently unavailable">
+        <br>
+        <br>
+        <br>
+    </div>
+
+
+    <a id="a_documents_analysis_bacterial_clinical_relevance"><h5>&#167; Clinical relevance</h5></a>
+    <div id="div_documents_analysis_bacterial_clinical_relevance"> 
+        <h6 class="documents_analysis_query_part">For the query:</h6>
+        <img class="img_documents_analyses_query" src="{% static 'figures/documents_analyses_bacterial_clinical_relevance_query.png' %}" alt="Currently unavailable">
+        <p>
+            Step 1. Select the cancer type.
+            <br>
+            Step 2. Select the taxonomy level.
+            <br>
+            Step 3. Enter the bacteria name of interest. Autocompleted name list will popup if the bacteria existed in BIC. Otherwise, "Not available" will appear on 3 after clicking the query button.
+            <br>
+            Step 4. Click "Query" to get the result part.         </p>
+        <h6 class="documents_analysis_result_part">For the result:</h6>
+        <img class="img_documents_analyses_plot" src="{% static 'figures/documents_analyses_bacterial_clinical_relevance_plot.png' %}" alt="Currently unavailable">
+        <p>
+            Figure A shows the Kaplan-Meier plot of the input bacteria, taxonomy, and cancer type. The tumor samples are separated into a high and low group according to the median value of the bacterial abundance. Figure B shows the boxplot of relative abundance tumor and its adjacency tissues. Figure C and D show the boxplot of relative abundance of different group comparisons of the tumor samples, e.g., tumor stages and races. The message, “… has zero expression in all samples of …”, appears if all the expressions of the queried bacteria are all zeros in the search cancer type. Additionally, if there are no normal adjacency samples in the queried cancer type, figure B will show “Not available” only. Slide, zoom in, save or reload the image by clicking the button in the individual plot. The table shows the statistical p-value of the comparing groups. Save the table by clicking Copy, Excel, or CSV button.
+        </p>
+        <img class="img_documents_analyses_table" src="{% static 'figures/documents_analyses_bacterial_clinical_relevance_table.png' %}" alt="Currently unavailable">
+        <br>
+        <br>
+    </div>
+
+
+    <a id="a_documents_analysis_bacterial_coabundance_network"><h5>&#167; Bacterial co-abundance network</h5></a>
+        <div id="div_documents_analysis_bacterial_coabundance_network"> 
+        <h6 class="documents_analysis_query_part">For the query:</h6>
+        <img class="img_documents_analyses_query" src="{% static 'figures/documents_analyses_bacterial_coabundance_network_query.png' %}" alt="Currently unavailable">
+        <p>
+            Step 1. Select the cancer type.
+            <br>
+            Step 2. Select the taxonomy level.
+            <br>
+            Step 3. Enter the bacteria name of interest. Autocompleted name list will popup if the bacteria existed in BIC. Otherwise, "Not available" will appear on 3 after clicking the query button.
+            <br>
+            Step 4. Input p-value should be in the range of 0 and 1. If the setting is out of range, the message, "0 ≤ p-value ≤ 1", will show up on 4. If the queried p-value is too low, no result will be returned, and the tip "Too stringent!!!" will appear on 4.
+            <br>
+            Step 5. Click "Query" to get the result part.
+         </p>
+        <h6 class="documents_analysis_result_part">For the result:</h6>
+        <img class="img_documents_analyses_plot" src="{% static 'figures/documents_analyses_bacterial_coabundance_network_plot.png' %}" alt="Currently unavailable">
+        <p>
+            The network shows the SparCC correlation coefficients of the input bacteria, taxonomy, cancer type, and p-value cut-off. Zoom in, save, or reload the image by clicking the button in the individual plot. The table shows the statistics of the SparCC between input bacteria and its correlated bacteria under the user-defined p-value cut-off. Save the table by clicking Copy, Excel, or CSV button.
+        </p>
+        <img class="img_documents_analyses_table" src="{% static 'figures/documents_analyses_bacterial_coabundance_network_table.png' %}" alt="Currently unavailable">
+        <br>
+        <br>
+        <br>
+    </div>
+
+
+    <a id="a_documents_analysis_bacterial_human_rna_network"><h5>&#167; Bacteria-human gene network</h5></a>
+        <div id="div_documents_analysis_bacterial_human_rna_network"> 
+        <h6 class="documents_analysis_query_part">For the query:</h6>
+        <img class="img_documents_analyses_query" src="{% static 'figures/documents_analyses_bacterial_human_rna_network_query.png' %}" alt="Currently unavailable">
+        <p>
+            Step 1. Select the cancer type.
+            <br>
+            Step 2. Select the taxonomy level.
+            <br>
+            Step 3. Enter the bacteria name of interest. Autocompleted name list will popup if the bacteria existed in BIC human RNA network. Otherwise, “Not available” will appear on 3 after clicking the query button.
+            <br>
+            Step 4. Input z-score should be in the range of 0 and 20. If the setting is out of range, the message, "0 ≤ z-score ≤ 20", will show up on 4. If the queried z-score is too high, no result will be returned, and the tip "Too stringent!!!" will appear on 4.
+            <br>
+            Step 5. Input N positive and negative correlated edges should be between 1 and 200. If the setting is out of range, the message "1 ≤ N ≤ 200" will appear on 5.
+
+            <br>
+            Step 6. Click "Query" to get the result part.
+         </p>
+        <h6 class="documents_analysis_result_part">For the result:</h6>
+        <img class="img_documents_analyses_plot" src="{% static 'figures/documents_analyses_bacterial_human_rna_network_plot.png' %}" alt="Currently unavailable">
+        <p>
+            The network shows the Fisher’s z-transformed Spearman correlation coefficients (SCC z-score) between input bacteria and human RNA. To reduce plot complication, the maximal number of N positive and negative correlated edges is 200. Zoom in, save, or reload the image by clicking the button in the individual plot. The table shows all the pairs of input bacteria and human RNAs, and their SCC z-score, SCC, and SCC p-value rather than the limited N edges. Save the table by clicking Copy, Excel, or CSV button.
+        </p>
+        <img class="img_documents_analyses_table" src="{% static 'figures/documents_analyses_bacterial_human_rna_network_table.png' %}" alt="Currently unavailable">
+        <br>
+        <br>
+        <br>
+    </div>
+
+
+
+    <a id="a_documents_analysis_bacterial_associated_gene_ontology"><h5>&#167; Bacteria-associated gene ontology</h5></a>
+        <div id="div_documents_analysis_bacterial_associated_gene_ontology"> 
+        <h6 class="documents_analysis_query_part">For the query:</h6>
+        <img class="img_documents_analyses_query" src="{% static 'figures/documents_analyses_bacterial_associated_gene_ontology_query.png' %}" alt="Currently unavailable">
+        <p>
+            Step 1. Select the cancer type.
+            <br>
+            Step 2. Select the taxonomy level.
+            <br>
+            Step 3. Enter the bacteria name of interest. Autocompleted name list will popup if the bacteria existed in BIC human RNA network. Otherwise, “Not available” will appear on 3 after clicking the query button.
+            <br>
+            Step 4. Input adjusted p-value should be in the range of 0 and 1. If the setting is out of range, the message, “0 ≤ Adj p-value ≤ 1”, will show up on 4. If the queried adjusted p-value is too low, no result will be returned, and the tip “Too stringent!!!” will appear on 4.
+            <br>
+            Step 5. Input number of terms should be between 1 and 500. If the setting is out of range, the message “1 ≤ N ≤ 500” will appear on 5.
+            <br>
+            Step 6. Click "Query" to get the result part.
+         </p>
+        <h6 class="documents_analysis_result_part">For the result:</h6>
+        <img class="img_documents_analyses_plot" src="{% static 'figures/documents_analyses_bacterial_associated_gene_ontology_plot.png' %}" alt="Currently unavailable">
+        <p>
+            The bar chart shows the queried number (N) of gene ontology (GO) terms, sorted by descending order of NES, of the input bacteria, taxonomy, cancer type, and adjusted p-value cut-off. To reduce plot complication, the maximal number of N is 500. The table shows all the GO terms rather than the limited number. Save the table by clicking Copy, Excel, or CSV button.
+        </p>
+        <img class="img_documents_analyses_table" src="{% static 'figures/documents_analyses_bacterial_associated_gene_ontology_table.png' %}" alt="Currently unavailable">
+        <br>
+        <br>
+        <br>
+    </div>
+
+    
+    
+</div>
+
+{% endblock %}

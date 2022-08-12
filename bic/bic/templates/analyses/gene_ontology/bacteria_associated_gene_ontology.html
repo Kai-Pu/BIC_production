@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="page-header" id="page-hader">
+        <h3>Bacteria-associated gene ontology</h3>
+        <p>This module enables users to explore the biological processes which a given bacteria might be involved in.  The associated biological are identified by FGSEA using the association between mRNA expression and bacterial abundance as gene rank.</p>
+        {% include 'analyses/gene_ontology/query.html' %}
+    </div>
+    
+    <div class="page-result" id="page-result">
+        {% include 'analyses/gene_ontology/content.html' %}
+    </div>
+    
+    
+{% endblock %}

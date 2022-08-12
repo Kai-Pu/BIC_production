@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+<h2>
+    Statistics of TCGA samples
+</h2>
+
+<div id="div_statistics_table">
+    <table class="table table-condensed table-hover table-bordered text-left" id="statistics_table" width="100%">
+        <thead>
+            <tr>
+                <th>Cancer type</th>
+                <th>No. of tumor sample</th>
+                <th>No. of normal sample adjacencent to tumor</th>
+                <th>Survival</th>
+                <th>Race</th>
+                <th>Stage</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for project in data %}
+            <tr>
+                <td>{{ project.cancer_type }}</td>
+                <td>{{ project.number_of_tumor_sample }}</td>
+                <td>{{ project.number_of_normal_sample_adjacent_to_tumor }}</td>
+                <td>{{ project.survival_data_available }}</td>
+                <td>{{ project.race_data_available }}</td>
+                <td>{{ project.stage_data_available }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>    
+</div>
+
+
+{% endblock %}

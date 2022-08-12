@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="page-header" id="page-hader">
+        <h3>Clinical relevance</h3>
+        <p>This module enables users to investigate the associations between bacterial abundance and clinical characteristics, including patient survival, tumor stage, sample types, and races.</p>
+        {% include 'analyses/clinical_relevance/query.html' %}
+    </div>
+    
+    <div class="page-result" id="page-result">
+        {% include 'analyses/clinical_relevance/content.html' %}
+    </div>
+    
+    
+{% endblock %}

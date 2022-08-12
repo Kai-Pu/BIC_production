@@ -1,0 +1,343 @@
+
+html,body{
+    height: 100%;
+}
+
+.wrapper {
+    min-height: 100%;
+    position: relative;
+}
+
+.container-fluid{
+    height: 60px;
+    box-sizing: border-box;
+    background-color: rgb(57, 96, 141);
+}
+
+.container {
+    padding-top: 20px;
+    padding-bottom: 80px;
+}
+
+.footer {
+    height: 60px;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(57, 96, 141);
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding:20px;
+    color: #f4f4f4;
+    font-family:  Arial;
+}
+
+.navbar {
+    background-color: rgb(57, 96, 141);
+}
+
+
+.a_lab {
+    color: rgb(16, 240, 16);
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.callout {
+    background-color: #fff;
+    border: 1px solid #e4e7ea;
+    border-left: 4px solid #c8ced3;
+    border-radius: .25rem;
+    margin: 1rem 0;
+    padding: .75rem 1.25rem;
+    position: relative;
+  }
+
+.callout-danger {
+    border-color: #ebccd1;
+    border-left-color: #d32535;
+}
+
+.callout-warning {
+    border-color: #faebcc; 
+    border-left-color: #edb100;
+}
+
+.callout-primary {
+    border-color: #b8daff;
+    border-left-color: #17a2b8;
+}
+
+.callout-info {
+    border-color: #b8daff;
+    border-left-color: #148ea1;
+}
+
+
+table {
+    text-align: center; 
+}
+
+
+#div_analyses_clinical_relevance_plot_row_1 {
+    display: flex;
+}
+
+#div_analyses_clinical_relevance_plot_TPvsTN {
+    flex: 50%;
+    padding: 10px;
+}
+
+#div_analyses_clinical_relevance_plot_stage {
+    flex: 50%;
+    padding: 10px;
+}
+
+#div_analyses_clinical_relevance_plot_row_2 {
+    display: flex;
+} 
+
+#div_analyses_clinical_relevance_plot_survival {
+    flex: 50%;
+    padding: 10px;
+}
+
+#div_analyses_clinical_relevance_plot_race {
+    flex: 50%;
+    padding: 10px;
+}
+
+
+
+#analyses_abundance_bacteria_input_error {
+    color: #ee1010;
+}
+
+#analyses_clinical_relevance_bacteria_input_error {
+    color: #ee1010;
+}
+
+#analyses_clinical_relevance_plot_bacteria_all_zero_expression {
+    color: #ee1010;
+}
+
+#analyses_coabundance_network_bacteria_input_error {
+    color: #ee1010;
+}
+
+#analyses_coabundance_network_p_value_input_error {
+    color: #ee1010;
+}
+
+
+
+#analyses_bacteria_human_rna_network_bacteria_input_error {
+    color: #ee1010;
+}
+
+#analyses_bacteria_human_rna_network_z_score_input_error {
+    color: #ee1010;
+}
+
+#analyses_bacteria_human_rna_network_number_edge_input_error {
+    color: #ee1010;
+}
+
+
+
+#analyses_bacteria_associated_gene_ontology_bacteria_input_error {
+    color: #ee1010;
+}
+
+#analyses_bacteria_associated_gene_ontology_adjust_p_value_input_error {
+    color: #ee1010;
+}
+
+#analyses_bacteria_associated_gene_ontology_number_term_input_error {
+    color: #ee1010;
+}
+
+
+
+
+
+/* home/index page setting */
+
+#div_home_workflow {
+    background-color: #fff;
+    border-color: #13093671;
+    border: 2px solid #13093671;
+    border-left: 2px solid #13093671;
+}
+
+
+#div_index_figures {
+    width: 85%;
+    height: 450px;
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.slick-prev:before {
+    content: "_";
+    background: url("/static/icons/arrow_left.png") no-repeat center;
+    background-size: 25px;
+    position: relative;
+    font-size: 50px;
+}  
+.slick-next:before {
+    content: "_";
+    background: url("/static/icons/arrow_right.png") no-repeat center;
+    background-size: 25px;
+    position: relative;
+    font-size: 50px;
+}
+
+.img_home_workflow {
+    width: 85%;
+    padding: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.div_index_figures_message {
+    float: left;
+    width: 38%;
+}
+
+.div_message_title {
+    color: rgb(249, 100, 0, 1);
+    font-size: 25px;
+    font-weight: bold;
+    height: 30px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.div_message_keyword {
+    color: rgba(0,0,0,1);
+    font-size: 18px;
+    margin-top: 15px;
+    height: 20px;
+    margin-left: 20px;
+    text-align: left;
+}
+
+.message_keyword {
+    list-style: none;
+    padding: 0px;
+    display: inline;
+}
+
+.message_keyword_text {
+    display: inline;
+    font-style: italic;
+    color: rgb(11, 98, 24);
+}
+
+.message_keyword_delimiter {
+    display: inline;
+}
+
+.message_description {
+    font-size: 16px;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-top: 10px;
+    height: 230px;
+    overflow: hidden;
+}
+
+.div_index_figures_gif {
+    float: left;
+    width: 40%;
+    margin-left: 10px;
+}
+
+.img_home_analyses {
+    margin-left: 10px;
+}
+
+
+
+/* home/documents page setting */
+
+
+#div_documents {
+    width: 80%;
+}
+
+#div_document_menu {
+    position: fixed;
+    top: 100px;
+    right: 0;
+    width: 280px;
+    list-style: none;
+}
+
+* {
+    scroll-margin-top: 70px;
+}
+
+
+.documents_analysis_query_part {
+    padding-top: 10px;
+    color: #9b1a9d;
+}
+
+.documents_analysis_result_part {
+    padding-top: 10px;
+    color: #6d156e;
+}
+
+
+#img_documents_bacteria_abundance_processing {
+    /* width: 80%; */
+    width: 800px;
+    padding: 10px;
+}
+
+
+
+.img_documents_analyses_query {
+    /* width: 67%; */
+    width: 700px;
+    padding: 10px;
+}
+
+.img_documents_analyses_plot {
+    /* width: 80%; */
+    width: 800px;
+    padding: 10px;
+}
+
+.img_documents_analyses_table {
+    /* width: 67%; */
+    width: 700px;
+    padding: 10px;
+}
+
+
+.div_contact_row {
+    display: flex;
+} 
+
+.div_contact {
+    padding-top: 30px;
+    padding-right: 100px;
+    padding-bottom: 30px;
+    width: 50%;
+}
+
+
+
+.div_downloads {
+    padding-top: 30px;
+}

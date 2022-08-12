@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="page-header" id="page-header">
+        <h3>Bacterial abundance</h3>
+        <p>This module enables users to explore the relative abundance of a given bacteria across all tumor types.</p>
+        {% include 'analyses/abundance/query.html' %}
+    </div>
+
+    <div class="page-result" id="page-result">
+        {% include 'analyses/abundance/content.html' %}
+    </div>
+    
+{% endblock %}
