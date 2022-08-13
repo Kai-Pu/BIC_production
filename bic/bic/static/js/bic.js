@@ -219,7 +219,7 @@ $(document).ready(function() {
         success: function(data)
         {
             var bacteria = data
-            console.log(bacteria)
+            // console.log(bacteria)
 
             $("#bacteria_coabundance_input").autocomplete ({
                 source: function(request, response) {
@@ -249,7 +249,7 @@ $(document).ready(function() {
             success: function(data)
             {
                 var bacteria = data
-                console.log(bacteria)
+                // console.log(bacteria)
 
                 $("#bacteria_coabundance_input").autocomplete ({
                     source: function(request, response) {
@@ -287,7 +287,7 @@ $(document).ready(function() {
             success: function(data)
             {
                 var bacteria = data
-                console.log(bacteria)
+                // console.log(bacteria)
 
                 $("#bacteria_coabundance_input").autocomplete ({
                     source: function(request, response) {
@@ -335,7 +335,7 @@ $(document).ready(function() {
             success: function(data)
             {   
                 data = $.parseJSON(data)
-                console.log(data)
+                // console.log(data)
                 
                 
                 $("#progress_bar").hide();
@@ -543,7 +543,7 @@ $(document).ready(function() {
             success: function(data)
             {
                 data = JSON.parse(data)
-                console.log(data)
+                // console.log(data)
 
                 $("#progress_bar").hide();
                 $("#div_analyses_clinical_relevance_plot_survival").empty();
@@ -784,7 +784,7 @@ $(document).ready(function() {
             {
                 
                 data = JSON.parse(data)
-                console.log(data)
+                // console.log(data)
 
                 $("#progress_bar").hide();
 
@@ -805,7 +805,7 @@ $(document).ready(function() {
 
 
                     network_table = $.parseJSON(data["data"])
-                    console.log(network_table)
+                    // console.log(network_table)
 
                     $('#analyses_bacteria_human_rna_network_table').DataTable({
                         data: network_table,
@@ -880,7 +880,7 @@ $(document).ready(function() {
             success: function(data)
             {
                 data = JSON.parse(data)
-                console.log(data)
+                // console.log(data)
                 
                 $("#progress_bar").hide();
 
@@ -903,7 +903,7 @@ $(document).ready(function() {
 
 
                     data = $.parseJSON(data["data"])
-                    console.log(data)
+                    // console.log(data)
 
                     $('#analyses_bacteria_associated_gene_ontology_table').DataTable({
                         data: data,
