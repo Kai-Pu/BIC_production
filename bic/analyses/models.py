@@ -307,6 +307,124 @@ class View_bacteria_associated_gene_ontology(models.Model):
 
 
 
+class Kegg_pathway(models.Model):
+    kegg_pathway_id = models.IntegerField(primary_key=True)
+    term = models.CharField(max_length=200)
+    size = models.IntegerField()
+    gene_symbol = models.TextField()
+    
+    class Meta:
+        managed = False
+        db_table = 'kegg_pathway'
+
+
+
+
+class Bacteria_associated_kegg_pathway(models.Model):
+    bacteria_associated_kegg_pathway_id = models.IntegerField(primary_key=True)
+    p_value = models.FloatField(null=True)
+    adjust_p_value = models.FloatField(null=True)
+    es = models.FloatField(null=True)
+    nes = models.FloatField(null=True)
+    n_more_extreme = models.IntegerField(null=True)
+    size = models.IntegerField(null=True)
+    gene_symbol = models.TextField(null=True)
+    cancer_type = models.ForeignKey(Cancer_type, on_delete=models.CASCADE)
+    taxonomy_level_bacterium = models.ForeignKey(Taxonomy_level_bacterium, on_delete=models.CASCADE)
+    kegg_pathway = models.ForeignKey(Kegg_pathway, null=True, blank=True, on_delete=models.CASCADE)
+    
+    class Meta:
+        managed = False
+        db_table = 'bacteria_associated_kegg_pathway'
+
+
+
+
+
+
+
+## create view for bacteria_associated_kegg_pathway
+class View_bacteria_associated_kegg_pathway(models.Model):
+    bacteria_associated_kegg_pathway_id = models.IntegerField(primary_key=True)
+    cancer_type_id = models.CharField(max_length=5)
+    taxonomy_level_id = models.CharField(max_length=3)
+    name = models.CharField(max_length=100)
+    term = models.CharField(max_length=200)
+    p_value = models.FloatField(null=True)
+    adjust_p_value = models.FloatField(null=True)
+    es = models.FloatField(null=True)
+    nes = models.FloatField(null=True)
+    n_more_extreme = models.IntegerField(null=True)
+    size = models.IntegerField(null=True)
+    gene_symbol = models.TextField(null=True)
+    
+    class Meta:
+        managed = False
+        db_table = 'view_bacteria_associated_kegg_pathway'
+
+
+
+
+
+class Reactome_pathway(models.Model):
+    reactome_pathway_id = models.IntegerField(primary_key=True)
+    term = models.CharField(max_length=200)
+    size = models.IntegerField()
+    gene_symbol = models.TextField()
+    
+    class Meta:
+        managed = False
+        db_table = 'reactome_pathway'
+
+
+
+
+class Bacteria_associated_reactome_pathway(models.Model):
+    bacteria_associated_reactome_pathway_id = models.IntegerField(primary_key=True)
+    p_value = models.FloatField(null=True)
+    adjust_p_value = models.FloatField(null=True)
+    es = models.FloatField(null=True)
+    nes = models.FloatField(null=True)
+    n_more_extreme = models.IntegerField(null=True)
+    size = models.IntegerField(null=True)
+    gene_symbol = models.TextField(null=True)
+    cancer_type = models.ForeignKey(Cancer_type, on_delete=models.CASCADE)
+    taxonomy_level_bacterium = models.ForeignKey(Taxonomy_level_bacterium, on_delete=models.CASCADE)
+    reactome_pathway = models.ForeignKey(Reactome_pathway, null=True, blank=True, on_delete=models.CASCADE)
+    
+    class Meta:
+        managed = False
+        db_table = 'bacteria_associated_reactome_pathway'
+
+
+
+
+
+
+
+## create view for bacteria_associated_reactome_pathway
+class View_bacteria_associated_reactome_pathway(models.Model):
+    bacteria_associated_reactome_pathway_id = models.IntegerField(primary_key=True)
+    cancer_type_id = models.CharField(max_length=5)
+    taxonomy_level_id = models.CharField(max_length=3)
+    name = models.CharField(max_length=100)
+    term = models.CharField(max_length=200)
+    p_value = models.FloatField(null=True)
+    adjust_p_value = models.FloatField(null=True)
+    es = models.FloatField(null=True)
+    nes = models.FloatField(null=True)
+    n_more_extreme = models.IntegerField(null=True)
+    size = models.IntegerField(null=True)
+    gene_symbol = models.TextField(null=True)
+    
+    class Meta:
+        managed = False
+        db_table = 'view_bacteria_associated_reactome_pathway'
+
+
+
+
+
 class Statistics(models.Model):
     cancer_type = models.CharField(max_length=50, primary_key=True)
     number_of_tumor_sample = models.IntegerField()
@@ -321,3 +439,5 @@ class Statistics(models.Model):
     class Meta:
         managed = False
         db_table = 'statistics'
+
+

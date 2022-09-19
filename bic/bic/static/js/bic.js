@@ -675,12 +675,19 @@ $(document).ready(function() {
         var taxonomy_level_coabundance_input = $("#taxonomy_level_coabundance_input").val();
         var bacteria_coabundance_input = $("#bacteria_coabundance_input").val();
         var p_value_input = $("#p_value_input").val();
+        // var network_displaying_option_input = $("#network_displaying_option_input").val();
+        var network_displaying_option_input = "first_neighbor";
+        if ( $('#network_displaying_option_input').is(':checked') ) {
+            network_displaying_option_input = "all";
+        }
+
 
         var parse_data = new FormData();
         parse_data.append('cancer_type_coabundance_input', cancer_type_coabundance_input);
         parse_data.append('taxonomy_level_coabundance_input', taxonomy_level_coabundance_input);
         parse_data.append('bacteria_coabundance_input', bacteria_coabundance_input);
         parse_data.append('p_value_input', p_value_input);
+        parse_data.append('network_displaying_option_input', network_displaying_option_input);
 
         $.ajax({
             url: '/bic/analyses/coabundance_network_ajax/', 
@@ -718,7 +725,8 @@ $(document).ready(function() {
                     $('#analyses_coabundance_network_table').DataTable({
                         data: network_table,
                         destroy: true,
-                        paging: false,
+                        paging: true,
+                        pageLength: 15,
                         dom: 'Bfrtip',
                         buttons: [
                             'copy', 'excel', 'pdf', 'csv'
@@ -860,6 +868,7 @@ $(document).ready(function() {
         var cancer_type_input = $("#cancer_type_go_input").val();
         var taxonomy_level_input = $("#taxonomy_level_go_input").val();
         var bacteria_input = $("#bacteria_go_input").val();
+        var gene_set_input = $("#gene_set_input").val();
         var adjust_p_value_input = $("#adjust_p_value_input").val();
         var number_term_input = $("#number_term_input").val();
 
@@ -867,6 +876,7 @@ $(document).ready(function() {
         parse_data.append('cancer_type_input', cancer_type_input);
         parse_data.append('taxonomy_level_input', taxonomy_level_input);
         parse_data.append('bacteria_input', bacteria_input);
+        parse_data.append('gene_set_input', gene_set_input);
         parse_data.append('adjust_p_value_input', adjust_p_value_input);
         parse_data.append('number_term_input', number_term_input);
 

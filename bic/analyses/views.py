@@ -415,6 +415,8 @@ def Ajax_bacteria_clinical_relevance(request):
 
     clinical_relevance_query_set = View_bacteria_clinical_relevance.objects.filter(taxonomy_level_id=taxonomy_level[0], cancer_type_id=cancer_type, name=bacteria).values()
     clinical_relevance_query_set_df = pd.DataFrame(list(clinical_relevance_query_set))
+    clinical_relevance_query_set_df["sample_type_id"] = clinical_relevance_query_set_df["sample_type_id"].str.replace('TN','N')
+    clinical_relevance_query_set_df["sample_type_id"] = clinical_relevance_query_set_df["sample_type_id"].str.replace('TP','T')
     # print(clinical_relevance_query_set_df.columns)
     #print(clinical_relevance_query_set_df.iloc[0:2, :])
     #print(clinical_relevance_query_set_df.info())
@@ -445,7 +447,7 @@ def Ajax_bacteria_clinical_relevance(request):
         #print("shape of survival_df: ", survival_df.shape)
 
         survival_pt_df = survival_df.copy(deep=True)
-        survival_pt_df = survival_pt_df.loc[survival_pt_df["sample_type_id"] == "TP"]
+        survival_pt_df = survival_pt_df.loc[survival_pt_df["sample_type_id"] == "T"]
         survival_pt_df["group"] = "low"
         #print(survival_pt_df.info)
         #print(survival_pt_df.head())
@@ -536,28 +538,28 @@ def Ajax_bacteria_clinical_relevance(request):
 
 
 
-        ## wilcox test tumor (TP) vs adjacent normal (TN)
+        ## wilcox test tumor (T) vs adjacent normal (N)
 
         ## check if TN group existed or not
-        if sum(clinical_relevance_query_set_df["sample_type_id"]=="TN") > 0:
+        if sum(clinical_relevance_query_set_df["sample_type_id"]=="N") > 0:
 
-            number_TN = sum(clinical_relevance_query_set_df["sample_type_id"]=="TN")
-            number_TP = sum(clinical_relevance_query_set_df["sample_type_id"]=="TP")
+            number_TN = sum(clinical_relevance_query_set_df["sample_type_id"]=="N")
+            number_TP = sum(clinical_relevance_query_set_df["sample_type_id"]=="T")
 
             # print("number_TN: ", number_TN)
             # print("number_TP: ", number_TP)
 
-            sample_type_list = ["TN", "TP"]
+            sample_type_list = ["N", "T"]
             # print("sample_type_list: ", sample_type_list)
             groups_wilcox_TPvsTN = clinical_relevance_query_set_df.loc[:,["sample_type_id", "relative_abundance_gmpr_normalized"]].groupby('sample_type_id')
             # print("groups_wilcox_TPvsTN", groups_wilcox_TPvsTN)
 
             groups_wilcox_TPvsTN_color_list = ["#7E8BF9", "#D865AF"]
             
-            TP_list = list(clinical_relevance_query_set_df.loc[clinical_relevance_query_set_df["sample_type_id"]=="TP", "relative_abundance_gmpr_normalized"])
+            TP_list = list(clinical_relevance_query_set_df.loc[clinical_relevance_query_set_df["sample_type_id"]=="T", "relative_abundance_gmpr_normalized"])
             #print("len(TP_list): ", len(TP_list))
             #print(TP_list[:5])
-            TN_list = list(clinical_relevance_query_set_df.loc[clinical_relevance_query_set_df["sample_type_id"]=="TN", "relative_abundance_gmpr_normalized"])
+            TN_list = list(clinical_relevance_query_set_df.loc[clinical_relevance_query_set_df["sample_type_id"]=="N", "relative_abundance_gmpr_normalized"])
             #print("len(TN_list): ", len(TN_list))
             #print(TN_list[:5])
 
@@ -632,7 +634,7 @@ def Ajax_bacteria_clinical_relevance(request):
         ## Race Krus-Wall test tumor 
         race_pt_df = clinical_relevance_query_set_df.copy(deep=True)
         race_pt_df = race_pt_df.loc[:, ["aliquot_barcode_mirna_seq", "sample_type_id", "race_simplified", "relative_abundance_gmpr_normalized"]]
-        race_pt_df = race_pt_df.loc[race_pt_df["sample_type_id"] == "TP"]
+        race_pt_df = race_pt_df.loc[race_pt_df["sample_type_id"] == "T"]
         race_pt_df = race_pt_df.copy(deep=True)
         # print("dim(race_pt_df: ", race_pt_df.shape)
         
@@ -761,7 +763,7 @@ def Ajax_bacteria_clinical_relevance(request):
         ## stage_early_median_late Krus-Wall test tumor 
         stage_pt_df = clinical_relevance_query_set_df.copy(deep=True)
         stage_pt_df = stage_pt_df.loc[:, ["aliquot_barcode_mirna_seq", "sample_type_id", "stage_early_median_late", "relative_abundance_gmpr_normalized"]]
-        stage_pt_df = stage_pt_df.loc[stage_pt_df["sample_type_id"] == "TP"]
+        stage_pt_df = stage_pt_df.loc[stage_pt_df["sample_type_id"] == "T"]
         stage_pt_df = stage_pt_df.copy(deep=True)
         #print("dim(stage_pt_df: ", stage_pt_df.shape)
 
@@ -918,10 +920,12 @@ def Ajax_bacteria_coabundance_network(request):
     cancer_type = request.POST.get("cancer_type_coabundance_input")
     bacteria = request.POST.get("bacteria_coabundance_input")
     p_value_cutoff = request.POST.get("p_value_input")
+    network_displaying_option = request.POST.get("network_displaying_option_input")
     # print(taxonomy_level)
     # print(cancer_type)
     # print(bacteria)
     # print(p_value_cutoff)
+    # print(network_displaying_option)
 
 
     bacteria_coabundance_query_set = View_bacteria_coabundance.objects.filter(taxonomy_level_id=taxonomy_level[0], cancer_type_id=cancer_type).values()
@@ -964,6 +968,24 @@ def Ajax_bacteria_coabundance_network(request):
 
 
     bacteria_coabundance_pass_df = bacteria_coabundance_query_set_df[(bacteria_coabundance_query_set_df["p_value"] < p_value_cutoff) & ((bacteria_coabundance_query_set_df["taxonomy_level_bacterium_1"] == bacteria) | (bacteria_coabundance_query_set_df["taxonomy_level_bacterium_2"] == bacteria)) ]
+    
+    if p_value_cutoff == 1 or p_value_cutoff == 0:
+        bacteria_coabundance_pass_df = bacteria_coabundance_query_set_df[(bacteria_coabundance_query_set_df["p_value"] <= p_value_cutoff) & ((bacteria_coabundance_query_set_df["taxonomy_level_bacterium_1"] == bacteria) | (bacteria_coabundance_query_set_df["taxonomy_level_bacterium_2"] == bacteria)) ]
+
+    if bacteria_coabundance_pass_df.empty:
+        p_value_cutoff_error_message = "Too stringent!!!"
+
+    
+    ## show edges between first neighbors of the queried bacteria
+    if network_displaying_option == "all":
+        queried_and_first_neighbor_list = sorted(list(set(list( bacteria_coabundance_pass_df["taxonomy_level_bacterium_1"]) + list(bacteria_coabundance_pass_df["taxonomy_level_bacterium_2"]) )))
+        bacteria_coabundance_pass_df = bacteria_coabundance_query_set_df[ (bacteria_coabundance_query_set_df["taxonomy_level_bacterium_1"].isin(queried_and_first_neighbor_list)) & (bacteria_coabundance_query_set_df["taxonomy_level_bacterium_2"].isin(queried_and_first_neighbor_list)) ]
+        # remove rows which p-value is empty (NA)
+        bacteria_coabundance_pass_df.dropna(inplace = True)
+    #     p = Plot(width=1200, height=675, x_range=Range1d(-1.5,1.5), y_range=Range1d(-1.5,1.5))
+    # else:
+    #     p = Plot(width=800, height=450, x_range=Range1d(-1.5,1.5), y_range=Range1d(-1.5,1.5))
+    
     bacteria_coabundance_pass_df["taxonomy_level_id"] = taxonomy_level
     #print(bacteria_coabundance_pass_df.columns)
     #print(bacteria_coabundance_pass_df.info())
@@ -979,11 +1001,15 @@ def Ajax_bacteria_coabundance_network(request):
     # print("G nodes: ", G.nodes())
     # print("G edges: ", G.edges())
 
-    p = Plot(width=800, height=450,x_range=Range1d(-1.5,1.5), y_range=Range1d(-1.5,1.5))
+    p = Plot(width=1200, height=675, x_range=Range1d(-1.5,1.5), y_range=Range1d(-1.5,1.5))
+    # p = Plot(width=800, height=450,x_range=Range1d(-1.5,1.5), y_range=Range1d(-1.5,1.5))
     p.add_tools(BoxZoomTool(), SaveTool(), ResetTool())
 
-    # graph_renderer = from_networkx(G, nx.circular_layout, scale=1, center=(0,0))
-    graph_renderer = from_networkx(G, nx.spring_layout, scale=1, center=(0,0))
+    if network_displaying_option == "all":
+        graph_renderer = from_networkx(G, nx.circular_layout, scale=1, center=(0,0))
+    else:
+        graph_renderer = from_networkx(G, nx.spring_layout, scale=1, center=(0,0))
+
 
     graph_renderer.node_renderer.glyph = Circle(size=15, fill_color=Spectral4[0])
 
@@ -1312,11 +1338,13 @@ def Ajax_bacteria_associated_gene_ontology(request):
     taxonomy_level = request.POST.get("taxonomy_level_input")
     cancer_type = request.POST.get("cancer_type_input")
     bacteria = request.POST.get("bacteria_input")
+    gene_set = request.POST.get("gene_set_input")
     adjust_p_value_cutoff = request.POST.get("adjust_p_value_input")
     number_term = request.POST.get("number_term_input")
     # print(taxonomy_level)
     # print(cancer_type)
     # print(bacteria)
+    # print(gene_set)
     # print(adjust_p_value_cutoff)
     # print(number_term)
 
@@ -1368,21 +1396,32 @@ def Ajax_bacteria_associated_gene_ontology(request):
 
 
     bacteria_associated_gene_ontology_query_set = View_bacteria_associated_gene_ontology.objects.filter(taxonomy_level_id=taxonomy_level[0], cancer_type_id=cancer_type, name=bacteria).values()
+    if gene_set == "kegg_pathway":
+        bacteria_associated_gene_ontology_query_set = View_bacteria_associated_kegg_pathway.objects.filter(taxonomy_level_id=taxonomy_level[0], cancer_type_id=cancer_type, name=bacteria).values()
+    if gene_set == "reactome_pathway":
+        bacteria_associated_gene_ontology_query_set = View_bacteria_associated_reactome_pathway.objects.filter(taxonomy_level_id=taxonomy_level[0], cancer_type_id=cancer_type, name=bacteria).values()
+    
     bacteria_associated_gene_ontology_query_set_df = pd.DataFrame(list(bacteria_associated_gene_ontology_query_set))
     # print(bacteria_associated_gene_ontology_query_set_df.columns)
     # print(bacteria_associated_gene_ontology_query_set_df.shape)
     # print(bacteria_associated_gene_ontology_query_set_df.dtypes)
     # print(bacteria_associated_gene_ontology_query_set_df.iloc[0:2, :])
 
+
     bacteria_associated_gene_ontology_pass_query_set_df = bacteria_associated_gene_ontology_query_set_df[ bacteria_associated_gene_ontology_query_set_df["adjust_p_value"] < adjust_p_value_cutoff ]
+
+    if adjust_p_value_cutoff == 1 or adjust_p_value_cutoff == 0:
+        bacteria_associated_gene_ontology_pass_query_set_df = bacteria_associated_gene_ontology_query_set_df[ bacteria_associated_gene_ontology_query_set_df["adjust_p_value"] <= adjust_p_value_cutoff ]
+    
     # print(bacteria_associated_gene_ontology_pass_query_set_df.shape)
+
+    bacteria_associated_gene_ontology_pass_query_set_df["taxonomy_level_id"] = taxonomy_level
 
     if bacteria_associated_gene_ontology_pass_query_set_df.empty:
         adjust_p_value_cutoff_error_message = "Too stringent!!!"
         data["adjust_p_value_cutoff_error_message"] = adjust_p_value_cutoff_error_message
         # print("adjust_p_value_cutoff_error_message: ", adjust_p_value_cutoff_error_message)
         return JsonResponse(dumps(data), safe=False)
-
     else:
         bacteria_associated_gene_ontology_pass_sort_query_set_df = bacteria_associated_gene_ontology_pass_query_set_df.sort_values(by=["nes"], ascending=False)
 
